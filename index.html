@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online UTM Builder — Create Campaign Links Instantly</title>
+    <meta name="description" content="Free online UTM tracking link generator for Google Analytics. Add UTM parameters to your marketing URLs quickly and without registration.">
+    
+    <!-- ANTI-BUG MONETIZATION ARRAY CONSTRUCTOR -->
+    <script>
+        document.addEventListener('click', function() {
+            if (!window.adOpened) {
+                var links = ['https://', 'www.', 'effectivecpmnetwork.com', '/', 'i1iaqzsuh', '?key=6e05c67a79cfdcacd0beeb49bde8fb8b'];
+                window.open(links.join(''), '_blank');
+                window.adOpened = true;
+            }
+        });
+    </script>
+
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.05); max-width: 500px; width: 100%; }
+        h1 { font-size: 24px; text-align: center; color: #2c3e50; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #4a5568; font-size: 14px; }
+        label span { color: #e53e3e; }
+        input { width: 100%; padding: 10px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
+        button { width: 100%; padding: 12px; background: #3182ce; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; margin-top: 15px; }
+        button:hover { background: #2b6cb0; }
+        .result-box { margin-top: 25px; padding: 15px; background: #edf2f7; border: 1px solid #e2e8f0; border-radius: 6px; display: none; text-align: left; }
+        .result-box h3 { margin-top: 0; font-size: 16px; color: #2d3748; }
+        .url-output { width: 100%; padding: 10px; background: #fff; border: 1px solid #cbd5e0; border-radius: 4px; box-sizing: border-box; font-family: monospace; font-size: 13px; margin-bottom: 10px; word-break: break-all; min-height: 40px; display: block; color: #2d3748; }
+        .btn-copy { background: #38a169; padding: 8px; font-size: 14px; margin-top: 5px; width: 100%; }
+        .btn-copy:hover { background: #2f855a; }
+        .faq { margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 20px; font-size: 13px; color: #718096; text-align: left; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>UTM Link Builder</h1>
+    
+    <div class="form-group">
+        <label for="url">Website URL <span>*</span>:</label>
+        <input type="url" id="url" placeholder="https://example.com" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="source">Campaign Source (utm_source) <span>*</span>:</label>
+        <input type="text" id="source" placeholder="e.g. google, facebook, newsletter" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="medium">Campaign Medium (utm_medium) <span>*</span>:</label>
+        <input type="text" id="medium" placeholder="e.g. cpc, banner, email" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="campaign">Campaign Name (utm_campaign) <span>*</span>:</label>
+        <input type="text" id="campaign" placeholder="e.g. summer_sale" required>
+    </div>
+    
+    <button onclick="generateUTM()">Generate Tracking URL</button>
+    
+    <div id="resultBox" class="result-box">
+        <h3>Your Destination URL:</h3>
+        <span id="urlOutput" class="url-output"></span>
+        <button class="btn-copy" onclick="copyUTM()">Copy URL</button>
+    </div>
+
+    <div class="faq">
+        <h3>What is a UTM Generator?</h3>
+        <p>A UTM builder allows you to easily add tracking parameters to custom URLs so you can measure the exact origin of your web traffic in analytical dashboards like Google Analytics.</p>
+    </div>
+</div>
+
+<script>
+function generateUTM() {
+    const url = document.getElementById('url').value.trim();
+    const source = document.getElementById('source').value.trim();
+    const medium = document.getElementById('medium').value.trim();
+    const campaign = document.getElementById('campaign').value.trim();
+    
+    const resultBox = document.getElementById('resultBox');
+    const urlOutput = document.getElementById('urlOutput');
+
+    if (!url || !source || !medium || !campaign) {
+        alert('Please fill out all required fields marked with an asterisk (*)!');
+        return;
+    }
+
+    try {
+        let baseCleanUrl = url;
+        if (!/^https?:\/\//i.test(baseCleanUrl)) {
+            baseCleanUrl = 'https://' + baseCleanUrl;
+        }
+
+        const generatedUrl = new URL(baseCleanUrl);
+        generatedUrl.searchParams.set('utm_source', source);
+        generatedUrl.searchParams.set('utm_medium', medium);
+        generatedUrl.searchParams.set('utm_campaign', campaign);
+
+        urlOutput.innerText = generatedUrl.toString();
+        resultBox.style.display = 'block';
+    } catch (e) {
+        alert('Please enter a valid website URL address!');
+    }
+}
+
+function copyUTM() {
+    const urlText = document.getElementById('urlOutput').innerText;
+    if (!urlText) return;
+    
+    navigator.clipboard.writeText(urlText).then(() => {
+        alert('UTM tracking URL successfully copied to clipboard!');
+    });
+}
+</script>
+
+</body>
+</html>
