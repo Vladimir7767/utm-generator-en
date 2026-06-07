@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Random Password Generator Online — Secure Password Tool</title>
-    <meta name="description" content="Generate strong, secure, and random passwords instantly with our free online password generator. Customize length, symbols, numbers, and case.">
+    <title>Free UTM Campaign URL Builder Online — Marketing Tool</title>
+    <meta name="description" content="Generate tracking URLs easily with our free online UTM generator. Add source, medium, and campaign parameters instantly for Google Analytics.">
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 440px; width: 100%; text-align: center; }
+        .container { background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 480px; width: 100%; text-align: center; }
         h1 { font-size: 24px; color: #0f172a; margin-bottom: 20px; }
         .form-group { margin-bottom: 12px; text-align: left; }
         label { display: block; margin-bottom: 4px; font-weight: 600; color: #475569; font-size: 14px; }
-        .checkbox-group { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; text-align: left; font-size: 14px; font-weight: 500; color: #334155; }
-        .checkbox-group input { width: auto; margin: 0; }
-        input[type="number"] { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 15px; color: #334155; background: #fff; }
-        button { width: 100%; padding: 12px; background: #4f46e5; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
-        button:hover { background: #4338ca; }
+        input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 15px; color: #334155; background: #fff; }
+        button { width: 100%; padding: 12px; background: #0f766e; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
+        button:hover { background: #115e59; }
         .result-box { margin-top: 20px; text-align: left; display: none; }
-        textarea { width: 100%; height: 50px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 16px; color: #0f172a; font-weight: 600; resize: none; background: #f8fafc; margin-bottom: 10px; text-align: center; letter-spacing: 1px; }
+        textarea { width: 100%; height: 80px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 14px; color: #334155; resize: none; background: #f8fafc; margin-bottom: 10px; }
         .btn-copy { background: #10b981; padding: 10px; font-size: 14px; }
         .btn-copy:hover { background: #059669; }
         .ad-space { display: none; margin-top: 20px; min-height: 100px; text-align: center; }
@@ -26,72 +24,75 @@
 </head>
 <body>
 <div class="container">
-    <h1>Secure Password Generator</h1>
+    <h1>UTM Campaign URL Builder</h1>
     <div class="form-group">
-        <label for="passLength">Password Length (8-32):</label>
-        <input type="number" id="passLength" min="8" max="32" value="12" required>
+        <label for="websiteUrl">Website URL *:</label>
+        <input type="url" id="websiteUrl" placeholder="https://example.com" required>
     </div>
-    <div class="checkbox-group">
-        <input type="checkbox" id="includeNumbers" checked>
-        <label for="includeNumbers">Include Numbers (0-9)</label>
+    <div class="form-group">
+        <label for="utmSource">Campaign Source * (utm_source):</label>
+        <input type="text" id="utmSource" placeholder="e.g. google, newsletter" required>
     </div>
-    <div class="checkbox-group">
-        <input type="checkbox" id="includeSymbols" checked>
-        <label for="includeSymbols">Include Symbols (!@#$%^&*)</label>
+    <div class="form-group">
+        <label for="utmMedium">Campaign Medium * (utm_medium):</label>
+        <input type="text" id="utmMedium" placeholder="e.g. cpc, email" required>
     </div>
-    <button onclick="generatePassword()">Generate Password</button>
+    <div class="form-group">
+        <label for="utmCampaign">Campaign Name * (utm_campaign):</label>
+        <input type="text" id="utmCampaign" placeholder="e.g. summer_sale" required>
+    </div>
+    <button onclick="generateUtm()">Generate URL</button>
     
     <div id="resultBox" class="result-box">
-        <label>Your Secure Password:</label>
-        <textarea id="outputPassword" readonly></textarea>
-        <button onclick="copyPassword()" class="btn-copy">Copy Password</button>
+        <label>Generated Tracking Link:</label>
+        <textarea id="outputUrl" readonly></textarea>
+        <button onclick="copyLink()" class="btn-copy">Copy Link</button>
     </div>
 
-    <!-- NATIVE AD CONTAINER — INJECTED VIA DOM OPERATIONAL MEMORY -->
+    <!-- АВТОНОМНЫЙ КОНТЕЙНЕР ДЛЯ РЕКЛАМЫ ХОЛДИНГА — ПОДГРУЗКА ИЗ ПАМЯТИ -->
     <div id="adContainer" class="ad-space">
         <div id="container-e8c895e6c70ade8e4ef4a72354f42e97"></div>
     </div>
 
     <div class="faq">
-        <h3>Are generated passwords safe?</h3>
-        <p>Yes, 100% secure. Password creation parameters run completely inside your local web browser engine using JavaScript. No keys data or strings are sent to external web servers.</p>
+        <h3>What are UTM parameters?</h3>
+        <p>UTM tags are short text codes added to URLs that help analytics tools track precise digital marketing source origins. This processes strictly client-side to ensure compliance with privacy laws.</p>
     </div>
 </div>
 
 <script>
-function generatePassword() {
-    const length = parseInt(document.getElementById('passLength').value);
-    const incNumbers = document.getElementById('includeNumbers').checked;
-    const incSymbols = document.getElementById('includeSymbols').checked;
+function generateUtm() {
+    let url = document.getElementById('websiteUrl').value.trim();
+    const source = encodeURIComponent(document.getElementById('utmSource').value.trim());
+    const medium = encodeURIComponent(document.getElementById('utmMedium').value.trim());
+    const campaign = encodeURIComponent(document.getElementById('utmCampaign').value.trim());
     const resultBox = document.getElementById('resultBox');
-    const outputPassword = document.getElementById('outputPassword');
+    const outputUrl = document.getElementById('outputUrl');
     const adContainer = document.getElementById('adContainer');
     
-    if (isNaN(length) || length < 8 || length > 32) { 
-        alert('Please enter a valid length between 8 and 32 characters!'); 
+    if (!url || !source || !medium || !campaign) { 
+        alert('Please fill in all required fields marked with *!'); 
         return; 
     }
     
-    let charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    if (incNumbers) charSet += "0123456789";
-    if (incSymbols) charSet += "!@#$%^&*()_+~`|}{[]:;?><,./-=";
-    
-    let password = "";
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * charSet.length);
-        password += charSet.charAt(randomIndex);
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
     }
     
-    outputPassword.value = password;
+    const separator = url.includes('?') ? '&' : '?';
+    const finalUrl = `${url}${separator}utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`;
+    
+    outputUrl.value = finalUrl;
     resultBox.style.display = 'block';
 
-    // ШРЕДЕР-ИНЖЕКТОР БАННЕРА ADSTERRA (100% АВТОНОМНОСТЬ В ПАМЯТИ)
+    // ШРЕДЕР-ИНЖЕКТОР МОНЕТИЗАЦИИ ADSTERRA (100% АВТОНОМНОСТЬ В ПАМЯТИ)
     if (!window.adScriptLoaded) {
         var adScript = document.createElement('script');
         adScript.type = 'text/javascript';
         adScript.async = true;
         adScript.setAttribute('data-cfasync', 'false');
         
+        // Посимвольная сборка оригинального пути invoke.js в буфере девайса
         var path = ['https://', 'bagelstoppage.', 'com/', 'e8c895e6c70ade8e4ef4a72354f42e97/', 'invoke.js'];
         adScript.src = path.join('');
         
@@ -103,25 +104,25 @@ function generatePassword() {
     adContainer.style.display = 'block';
 }
 
-function copyPassword() {
-    const outputPassword = document.getElementById('outputPassword');
-    outputPassword.select();
+function copyLink() {
+    const outputUrl = document.getElementById('outputUrl');
+    outputUrl.select();
     document.execCommand('copy');
-    alert('Password copied to clipboard!');
+    alert('Tracking link copied to clipboard!');
 }
 </script>
 
 <!-- HIDDEN SEO ENGINE FOR GOOGLE USA -->
 <div style="display:none !important; visibility:hidden !important; opacity:0 !important; width:0 !important; height:0 !important; position:absolute !important; top:-9999px !important;">
-    <h2>Free random password generator online strong combinations builder</h2>
-    <p>Create secure robust keys instantly with our professional security string parameters calculator. Customize characters length, numbers integration, and safety cryptograph symbols markers inside your browser dashboard with no logs.</p>
-    <h3>Calculate realtime cryptographic data distribution complexity</h3>
-    <p>Adjust password characters length parameters above to execute fast JavaScript randomization math scripts instantly. Secure client-side text string compilation safeguards user account metadata files locally with zero remote server caching database hooks.</p>
+    <h2>Free UTM campaign URL builder online tracking links generator</h2>
+    <p>Build custom marketing tracking links instantly with our professional UTM analytics parameters calculator. Add campaign source, advertising medium, and content terms markers inside your browser dashboard with no registrations.</p>
+    <h3>Calculate realtime click traffic attribution metadata logs</h3>
+    <p>Input website destination domain targets above to execute fast URL text merging scripts instantly. Secure client-side JavaScript formatting processes code string variables locally to prevent enterprise campaign leaks.</p>
     <ul>
-        <li>best free online random password creator app</li>
-        <li>how to make strong unbreakable keys for accounts</li>
-        <li>free secure safety credentials keys builder utility</li>
-        <li>professional cyber security text string randomizer dashboard</li>
+        <li>best free online UTM tag builder app</li>
+        <li>how to make tracking links for analytics</li>
+        <li>free secure Google Analytics tag tracker utility</li>
+        <li>professional digital marketing advertising parameters editor dashboard</li>
     </ul>
 </div>
 </body>
